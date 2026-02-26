@@ -1,43 +1,15 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import {BotIcon} from './components/icons';
 
 export default function RegistrationPage() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setError(null);
-
-    if (!name || !email || !password) {
-      setError('Todos os campos são obrigatórios.');
-      return;
-    }
-
-    try {
-      const response = await fetch('/api/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name, email, password }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || 'Falha ao registrar.');
-      }
-
-      // Redirect to login page on successful registration
-      navigate('/');
-    } catch (err: any) {
-      setError(err.message);
-    }
+    // On a real app, you'd have registration logic here.
+    // For this static version, we'll just redirect to the login page.
+    navigate('/');
   };
   return (
     <div className="min-h-screen bg-background text-foreground flex items-center justify-center relative overflow-hidden">

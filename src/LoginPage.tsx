@@ -1,38 +1,13 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import {BotIcon} from './components/icons';
 
 export default function LoginPage() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    setError(null);
-
-    try {
-      const response = await fetch('/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || 'Falha no login.');
-      }
-
-      // Store the token (e.g., in localStorage) and navigate
-      localStorage.setItem('token', data.token);
-      navigate('/main');
-    } catch (err: any) {
-      setError(err.message);
-    }
+    navigate('/main');
   };
   return (
     <div className="min-h-screen bg-background text-foreground flex items-center justify-center relative overflow-hidden">
