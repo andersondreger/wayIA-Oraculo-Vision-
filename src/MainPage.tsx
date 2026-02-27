@@ -238,7 +238,7 @@ export default function MainPage() {
           <AnalysisDisplay
             result={analysisResult}
             isLoading={isLoading}
-            error={analysisError}
+            errorMessage={analysisError}
           />
         </div>
       </>

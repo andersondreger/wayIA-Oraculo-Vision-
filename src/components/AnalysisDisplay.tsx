@@ -1,6 +1,6 @@
 import {AnalysisResult} from '../types';
 
-export function AnalysisDisplay({result, isLoading, error}: {result: AnalysisResult | null; isLoading: boolean, error: string | null}) {
+export function AnalysisDisplay({result, isLoading, errorMessage}: {result: AnalysisResult | null; isLoading: boolean, errorMessage: string | null}) {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-full">
@@ -12,10 +12,10 @@ export function AnalysisDisplay({result, isLoading, error}: {result: AnalysisRes
     );
   }
 
-  if (error) {
+  if (errorMessage) {
     return (
       <div className="flex items-center justify-center h-full">
-        <p className="text-destructive text-center">{error}</p>
+        <p className="text-destructive text-center">{errorMessage}</p>
       </div>
     );
   }
